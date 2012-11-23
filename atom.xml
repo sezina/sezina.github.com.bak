@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://sezina.github.com/atom.xml" rel="self"/>
   <link href="http://sezina.github.com/"/>
-  <updated>2012-11-24T00:21:23+08:00</updated>
+  <updated>2012-11-24T00:31:43+08:00</updated>
   <id>http://sezina.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello]]></title>
+    <link href="http://sezina.github.com/blog/2012/11/24/hello/"/>
+    <updated>2012-11-24T00:28:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2012/11/24/hello</id>
+    <content type="html"><![CDATA[<pre><code>def hello():
+    print 'hello world'
+</code></pre>
+
+<p>This is a test.</p>
+]]></content>
+  </entry>
   
 </feed>
