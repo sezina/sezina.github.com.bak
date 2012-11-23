@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Hello"
+date: 2012-11-24 00:28
+comments: true
+categories: 
+---
+
+    def hello():
+        print 'hello world'
+
+
+This is a test.
