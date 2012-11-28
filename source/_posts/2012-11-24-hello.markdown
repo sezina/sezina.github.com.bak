@@ -3,11 +3,11 @@ layout: post
 title: "Hello"
 date: 2012-11-24 00:28
 comments: true
-categories: 
+categories: python 
 ---
-
+```python
     def hello():
         print 'hello world'
-
+```
 
 This is a test.
