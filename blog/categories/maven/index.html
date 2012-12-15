@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sezina</title>
+  <title>Category: Maven - Sezina</title>
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="Maven是Apache的一个开源项目，主要用于Java项目的构建、依赖管理和项目信息管理。Maven是个异常强大的自动化构建工具。这篇博文是我在开发过程中使用Maven的学习笔记。 环境： ubuntu 12.04
-Eclipse J2EE版本(惭愧只用过Eclipse)
-Maven 3.0.0 &hellip;">
+  <meta name="description" content="Category: Maven">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Maven 3.0.0 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sezina.github.com/">
+  <link rel="canonical" href="http://sezina.github.comblog/categories/maven/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,157 +75,40 @@ Maven 3.0.0 &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article role="article">
   
-  
-  
-    <article>
-      
   <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/15/using-maven-basic/">Using Maven(1): Basic</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-15T12:18:00+08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/12/15/using-maven-basic/#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: Maven</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-  <div class="entry-content"><p>Maven是Apache的一个开源项目，主要用于Java项目的构建、依赖管理和项目信息管理。Maven是个异常强大的自动化构建工具。这篇博文是我在开发过程中使用Maven的学习笔记。</p>
 
-<p>环境：</p>
+  
+  <h2>2012</h2>
 
-<ul>
-<li>ubuntu 12.04</li>
-<li>Eclipse J2EE版本(惭愧只用过Eclipse)</li>
-<li>Maven 3.0.0+</li>
-</ul>
+<article>
+  
+<h1><a href="/blog/2012/12/15/using-maven-basic/">Using Maven(1): Basic</a></h1>
+<time datetime="2012-12-15T12:18:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>15</span> <span class='year'>2012</span></time>
 
-
-<h2>Install</h2>
-
-<p>需要安装的有两个东西：一个是Maven本身，一个是IDE插件。</p>
-
-<ol>
-<li>从Apache的<a href="http://maven.apache.org">Maven官网</a>下载压缩包，并解压到指定目录.</li>
-<li>将Maven添加到系统路径中：export PATH=/path/to/maven/bin:$PATH 。如果使用bash，将该条语句添加到.bashrc中；zsh的添加到.zshrc中。搞定这步就可以在命令行使用Maven了。</li>
-<li>命令行虽然方便快捷，但使用Java进行开发的一般还是会用IDE进行开发。有些版本的Eclipse自带了maven插件，不好用，还是找个没有自带的自己装吧。m2e：http://m2eclipse.sonatype.org/sites/m2e，这个是必需的；m2e-extra：http://m2eclipse.sonatype.org/sites/m2e-extras，这个不是必需的。装完后，重启Eclipse，右键点击项目会发现多了Maven选项。</li>
-<li>Eclipse里还用进行一下设置，将maven的配置文件换成我们下的maven的配置文件。配置：Maven > installations > Add…。选到maven的目录添加进来就行了。</li>
-</ol>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/maven/'>Maven</a></span>
+</footer>
 
 
-<h2>Usage</h2>
-
-<p>Maven也是遵循“约定由于配置”原则的，所以使用Maven管理项目时，有约定好的目录结构。说实话，有关java的东西的命令行我都不熟，这里只说说Maven常用的几个命令和Eclipse下的使用。Eclipse下使用Maven创建的Java项目目录结构：</p>
-
-<pre><code>/src/main/java        ＃项目主代码目录
-/src/test/java        ＃项目测试代码目录
-/target               ＃maven的输出目录
-pom.xml               ＃maven中最重要的文件，作用如build.xml之于Ant
-</code></pre>
-
-<p>一般我们还会创建一个/src/main/resources目录用于存放项目资源，这也是maven约定的资源存放目录。</p>
-
-<h3>Maven常用命令</h3>
-
-<ol>
-<li>mvn help:system  该命令会答应出系统的环境变量，有时会非常有用。</li>
-<li>mvn clean compile 该命令会清理输出目录/target并编译项目至/target/classes目录。</li>
-<li>mvn clean test 清理输出目录->处理主资源->编译主代码->处理测试资源->编译测试代码->测试。</li>
-<li>mvn clean package 打包命令，默认打包成jar包。打包后的包名为pom.xml文件定义的artifactId-version.jar。</li>
-<li>mvn clean install 安装命令，会将当前项目打包后安装到Maven的本地仓库中，使得可以在其他maven项目中使用该包。</li>
-</ol>
-
-
-<p>Maven的命令还有其他参数可选，根据项目需求查看文档选择所需参数。</p>
-
-<h3>在Eclipse中使用Maven</h3>
-
-<ol>
-<li>使用maven创建项目：
-<img src="/images/mvn-project-select.png"></li>
-<li>选择archetype来生成项目骨架：
-<img src="/images/mvn-artifact-select.png"></li>
-<li>填写几个关键信息：
-<img src="/images/mvn-project-info.png"></li>
-<li>点击finish，这样就创建了一个Maven项目。Eclipse已经集成了Maven的几个常用命令，只需使用右键菜单选择即可执行。</li>
-</ol>
+</article>
 
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/24/hello/">Hello</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
 
   
+</article>
 
-
-<time datetime="2012-11-24T00:28:00+08:00" pubdate data-updated="true">Nov 24<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/11/24/hello/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;hello world&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is a test.</p>
 </div>
-  
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -248,7 +129,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/sezina">@sezina</a> on GitHub
@@ -291,6 +172,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
 
   
 </aside>
+
 
     </div>
   </div>
