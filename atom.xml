@@ -4,7 +4,7 @@
   <title><![CDATA[Sezina]]></title>
   <link href="http://sezina.github.com/atom.xml" rel="self"/>
   <link href="http://sezina.github.com/"/>
-  <updated>2012-12-15T14:37:36+08:00</updated>
+  <updated>2013-01-16T19:34:00+08:00</updated>
   <id>http://sezina.github.com/</id>
   <author>
     <name><![CDATA[Sezina]]></name>
@@ -12,6 +12,138 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using Maven(2): pom.xml]]></title>
+    <link href="http://sezina.github.com/blog/2012/12/16/using-maven-pom-dot-xml/"/>
+    <updated>2012-12-16T16:24:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2012/12/16/using-maven-pom-dot-xml</id>
+    <content type="html"><![CDATA[<h2>Coordinate(坐标)</h2>
+
+<figure class='code'><figcaption><span>pom.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>  <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>com.foo.bar<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>mvnTest<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;name&gt;</span>mvnTest<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;properties&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/properties&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependencies&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependencies&gt;</span>
+</span><span class='line'><span class="nt">&lt;/project&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是Eclipse下创建Maven项目时自动产生的pom文件。Maven通过一组元素来定义当前项目的坐标，它们是：groupId, artifactId, version, packaging, classifier，简单说就是将来该项目在类库中的标识。之前那个项目的坐标如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;groupId&gt;</span>com.foo.bar<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>mvnTest<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>各元素的意思：</p>
+
+<ul>
+<li>groupId: 定义当前Maven项目所属的实际项目。</li>
+<li>artifactId: 定义实际项目中的一个Maven项目(模块)，推荐是用实际项目名称作为artifactId的前缀。</li>
+<li>version: 项目版本。</li>
+<li>packaging: Maven项目的打包方式。</li>
+<li>classifier: 帮助定义构建输出的一些附属构件。</li>
+</ul>
+
+
+<h2>依赖配置</h2>
+
+<p>由pom文件中的<code>&lt;dependencies&gt;&lt;/dependencies&gt;</code>负责，下面的每个<code>&lt;dependency&gt;&lt;/dependency&gt;</code>定义一个包依赖，大体的结构如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>...<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>...<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>...<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;type&gt;</span>...<span class="nt">&lt;/type&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;scope&gt;</span>...<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;optional&gt;</span>...<span class="nt">&lt;/optional&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;exclusions&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;exclusion&gt;</span>
+</span><span class='line'>    ...
+</span><span class='line'>    <span class="nt">&lt;/exclusion&gt;</span>
+</span><span class='line'>    ...
+</span><span class='line'>  <span class="nt">&lt;/exclusions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>每个元素的意义如下：</p>
+
+<ul>
+<li>groupId, artifactId, version: 这是依赖的基本坐标，是必须的。</li>
+<li>type: 对应packaging，默认为jar。</li>
+<li>scope: 依赖作用的范围。</li>
+<li>optional: 标记依赖是否可用。</li>
+<li>exclusions: 用于排除传递性依赖。</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using Maven(1): Basic]]></title>
