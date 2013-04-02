@@ -30,8 +30,13 @@ footer: true
 
 ## Experience
 ---
-- 2012 summer, a ROR(Ruby on Rails) outsourcing from a graduated brother.
-- 2012.11 ~ 2013.01 Summba Technology(GuangZhou), work as a intern focusing on social-network(weibo) datamining.
+- 2010 summer, a simple Agenda system.
+- 2011 summer, a simple Digital Media Processing Software.
+- 2012 summer, a ROR(Ruby on Rails) outsourcing from a graduated student.
+- 2012 summer, a simulator of Pencil-brush based on Javascript.
+- 2012 summer, an online homework system based on ROR.
+- 2012.11 ~ 2013.06 Summba Technology(GuangZhou), work as a intern focusing on social-network(weibo) datamining.
+- 2013.02 ~  "一找小七"(wechat: yeezhao\_007), programmer and product manager.
 
 ## Education
 ---
