@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Phabricator | Sezina]]></title>
+  <link href="http://sezina.github.com/blog/categories/phabricator/atom.xml" rel="self"/>
+  <link href="http://sezina.github.com/"/>
+  <updated>2013-07-17T01:02:50+08:00</updated>
+  <id>http://sezina.github.com/</id>
+  <author>
+    <name><![CDATA[Sezina]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Phabricator命令行工具Arcanist的基本用法]]></title>
+    <link href="http://sezina.github.com/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/"/>
+    <updated>2013-07-16T20:49:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa</id>
+    <content type="html"><![CDATA[<p><a href="http://phabricator.org" title="Phabricator">Pharicator</a>是FB的代码审查工具，现在我所在的团队也使用它来进行代码质量的控制。其提供了一个differential(code review)命令行工具Arcanist(arc)。本文仅从本人的日常使用中总结出Arcanist比较常用的用法做个简单介绍。</p>
+
+<p><strong>环境说明</strong></p>
+
+<ul>
+<li>OS: OS X Mountail Lion</li>
+<li>SCV: svn</li>
+<li>IDE: Eclipse</li>
+</ul>
+
+
+<h2>安装</h2>
+
+<ul>
+<li>将Arcanist的源码拷贝到本地</li>
+</ul>
+
+
+<p><code>bash
+somewhere/ $ git clone git://github.com/facebook/libphutil.git
+somewhere/ $ git clone git://github.com/facebook/arcanist.git
+</code></p>
+
+<ul>
+<li>将arc的路径加入到系统路径中</li>
+</ul>
+
+
+<p><code>bash
+$ export PATH=$PATH:/somewhere/arcanist/bin/
+</code></p>
+
+<p>或在系统的profile或是bash(如果用bash)的配置文件的末尾加上这一句。</p>
+
+<ul>
+<li>命令行中输入<code>arc</code>看提示确认是否安装成功。</li>
+</ul>
+
+
+<h2>arc配置</h2>
+
+<ul>
+<li>arc的全局配置</li>
+</ul>
+
+
+<p>配置arc的默认编辑器，我使用vim
+<code>bash
+$ arc set-config editor "vim"
+</code></p>
+
+<p>配置默认的phabricator的uri，uri为团队的phabricator主页的url
+<code>bash
+$ arc set-config default http://phabricator.example.com
+</code></p>
+
+<ul>
+<li>在项目的根目录下建<code>.arcconfig</code>配置文件，文件中至少要填入以下内容</li>
+</ul>
+
+
+<p>```json .arcconfig
+{</p>
+
+<pre><code>"project_id" : "your project name",
+"conduit_uri" : "your phabricator url"
+</code></pre>
+
+<p>}
+```</p>
+
+<p>举个例子：</p>
+
+<p>```json .arcconfig
+{</p>
+
+<pre><code>"project_id" : "HelloWorld",
+"conduit_uri" : "http://phabricator.example.com"
+</code></pre>
+
+<p>}
+```</p>
+
+<p>该配置文件还可以配置静态代码检测引擎(lint)和单元测试引擎。</p>
+
+<ul>
+<li>为项目安装证书，用于phabricator的认证。</li>
+</ul>
+
+
+<p><code>bash
+yourproject/ $ arc install-certificate
+</code></p>
+
+<p>接着按照命令行提示操作就OK了。</p>
+
+<p>弄完这一步，才能真正在项目中使用arc。</p>
+
+<h2>在项目中使用arc</h2>
+
+<ul>
+<li><code>arc help [--full | [COMMAND]]</code> 查看帮助文档，接参数<code>--full</code>查看所有命令的详细用法，接具体的命令<code>[COMMAND]</code>如<code>arc help diff</code>可以查看该命令的详细用法。</li>
+<li>想phabricator提交review request(Differential).修改完代码后，使用<code>arc diff &lt;path&gt;</code>命令提交review request，该命令会产生一个包含如下内容的文件要求填写：
+```
+&lt;<Enter Revision Title>></li>
+</ul>
+
+
+<p>Summary:</p>
+
+<p>Test Plan:</p>
+
+<p>Reviewers:</p>
+
+<p>CC:</p>
+
+<p>Maniphest Tasks:</p>
+
+<h1>NEW DIFFERENTIAL REVISION</h1>
+
+<h1>Describe the changes in this new revision.</h1>
+
+<p>#</p>
+
+<h1>arc could not identify any existing revision in your working copy.</h1>
+
+<h1>If you intended to update an existing revision, use:</h1>
+
+<p>#</p>
+
+<h1>$ arc diff --update <revision></h1>
+
+<p><code>``
+按照提示填写后，保存退出，arc就会自动提交request。</code>Reviewers<code>用逗号隔开，</code>Maniphest Tasks<code>填相关联的phabricator上的</code>task_id<code>，如</code>T100`。Test plan暂时没用过，官方文档：<a href="http://www.phabricator.com/docs/phabricator/article/Differential_User_Guide_Test_Plans.html">http://www.phabricator.com/docs/phabricator/article/Differential_User_Guide_Test_Plans.html</a></p>
+
+<p>提交完成后，会产生一个形如<code>http://phabricator.example.com/D24</code>的url，url中的<code>D24</code>是revision_id。</p>
+
+<ul>
+<li><code>arc diff --update &lt;revision_id&gt;</code>更新<revision_id>对应的review request。该命令产生一个如下的文件，按提示填写保存退出，arc会提交更新。
+```</li>
+</ul>
+
+
+<h1>Updating D27: hahahah</h1>
+
+<p>#</p>
+
+<h1>Enter a brief description of the changes included in this update.</h1>
+
+<h1>The first line is used as subject, next lines as comment.</h1>
+
+<p>#</p>
+
+<h1>If you intended to create a new revision, use:</h1>
+
+<h1>$ arc diff --create</h1>
+
+<p>```</p>
+
+<ul>
+<li><code>arc commit --revision &lt;revision_id&gt;</code>提交对应<revision_id>提交代码更改，这个命令把svn commit的工作也做掉了，直接提交到代码库。</li>
+<li><code>arc todo &lt;description&gt; [option]</code>可以快速给自己在phabricator上创建task，<code>[option]</code>用于把task CC给其他人.</li>
+<li><code>arc tasks [options]</code> 查看Maniphest的tasks。</li>
+<li><code>arc amend --show</code> 查看当前项目的differentials，<code>arc amend --revision &lt;revision_id&gt; --show</code> 查看指定revision_id的differential。</li>
+</ul>
+
+
+<p><strong>Reference:</strong></p>
+
+<ol>
+<li>Arcanist官方文档： <a href="http://www.phabricator.com/docs/phabricator/article/Arcanist_User_Guide.html">http://www.phabricator.com/docs/phabricator/article/Arcanist_User_Guide.html</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

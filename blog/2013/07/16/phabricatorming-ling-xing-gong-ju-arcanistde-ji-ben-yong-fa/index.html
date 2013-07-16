@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sezina</title>
+  <title>Phabricator命令行工具Arcanist的基本用法 - Sezina</title>
   <meta name="author" content="Sezina">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sezina.github.com/">
+  <link rel="canonical" href="http://sezina.github.com/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,15 +76,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/">Phabricator命令行工具Arcanist的基本用法</a></h1>
+      <h1 class="entry-title">Phabricator命令行工具Arcanist的基本用法</h1>
     
     
       <p class="meta">
@@ -102,14 +99,14 @@
 
 <time datetime="2013-07-16T20:49:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2013</time>
         
-         | <a href="/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://phabricator.org" title="Phabricator">Pharicator</a>是FB的代码审查工具，现在我所在的团队也使用它来进行代码质量的控制。其提供了一个differential(code review)命令行工具Arcanist(arc)。本文仅从本人的日常使用中总结出Arcanist比较常用的用法做个简单介绍。</p>
+<div class="entry-content"><p><a href="http://phabricator.org" title="Phabricator">Pharicator</a>是FB的代码审查工具，现在我所在的团队也使用它来进行代码质量的控制。其提供了一个differential(code review)命令行工具Arcanist(arc)。本文仅从本人的日常使用中总结出Arcanist比较常用的用法做个简单介绍。</p>
 
 <p><strong>环境说明</strong></p>
 
@@ -307,183 +304,16 @@
 </ol>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/16/using-maven-pom-dot-xml/">Using Maven(2): pom.xml</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Sezina</span></span>
 
-<time datetime="2012-12-16T16:24:00+08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/12/16/using-maven-pom-dot-xml/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Coordinate(坐标)</h2>
-
-<figure class='code'><figcaption><span>pom.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
-</span><span class='line'>  <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>com.foo.bar<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>mvnTest<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;name&gt;</span>mvnTest<span class="nt">&lt;/name&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;properties&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/properties&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;dependencies&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/dependencies&gt;</span>
-</span><span class='line'><span class="nt">&lt;/project&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这是Eclipse下创建Maven项目时自动产生的pom文件。Maven通过一组元素来定义当前项目的坐标，它们是：groupId, artifactId, version, packaging, classifier，简单说就是将来该项目在类库中的标识。之前那个项目的坐标如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;groupId&gt;</span>com.foo.bar<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>mvnTest<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>各元素的意思：</p>
-
-<ul>
-<li>groupId: 定义当前Maven项目所属的实际项目。</li>
-<li>artifactId: 定义实际项目中的一个Maven项目(模块)，推荐是用实际项目名称作为artifactId的前缀。</li>
-<li>version: 项目版本。</li>
-<li>packaging: Maven项目的打包方式。</li>
-<li>classifier: 帮助定义构建输出的一些附属构件。</li>
-</ul>
-
-
-<h2>依赖配置</h2>
-
-<p>由pom文件中的<code>&lt;dependencies&gt;&lt;/dependencies&gt;</code>负责，下面的每个<code>&lt;dependency&gt;&lt;/dependency&gt;</code>定义一个包依赖，大体的结构如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>...<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>...<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;version&gt;</span>...<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;type&gt;</span>...<span class="nt">&lt;/type&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;scope&gt;</span>...<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;optional&gt;</span>...<span class="nt">&lt;/optional&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;exclusions&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;exclusion&gt;</span>
-</span><span class='line'>    ...
-</span><span class='line'>    <span class="nt">&lt;/exclusion&gt;</span>
-</span><span class='line'>    ...
-</span><span class='line'>  <span class="nt">&lt;/exclusions&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>每个元素的意义如下：</p>
-
-<ul>
-<li>groupId, artifactId, version: 这是依赖的基本坐标，是必须的。</li>
-<li>type: 对应packaging，默认为jar。</li>
-<li>scope: 依赖作用的范围。</li>
-<li>optional: 标记依赖是否可用。</li>
-<li>exclusions: 用于排除传递性依赖。</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/15/using-maven-basic/">Using Maven(1): Basic</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -495,133 +325,46 @@
   
 
 
-<time datetime="2012-12-15T12:18:00+08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/12/15/using-maven-basic/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Maven是Apache的一个开源项目，主要用于Java项目的构建、依赖管理和项目信息管理。Maven是个异常强大的自动化构建工具。这篇博文是我在开发过程中使用Maven的学习笔记。</p>
-
-<p>环境：</p>
-
-<ul>
-<li>ubuntu 12.04</li>
-<li>Eclipse J2EE版本(惭愧只用过Eclipse)</li>
-<li>Maven 3.0.0+</li>
-</ul>
-
-
-<h2>Install</h2>
-
-<p>需要安装的有两个东西：一个是Maven本身，一个是IDE插件。</p>
-
-<ol>
-<li>从Apache的<a href="http://maven.apache.org">Maven官网</a>下载压缩包，并解压到指定目录.</li>
-<li>将Maven添加到系统路径中：export PATH=/path/to/maven/bin:$PATH 。如果使用bash，将该条语句添加到.bashrc中；zsh的添加到.zshrc中。搞定这步就可以在命令行使用Maven了。</li>
-<li>命令行虽然方便快捷，但使用Java进行开发的一般还是会用IDE进行开发。有些版本的Eclipse自带了maven插件，不好用，还是找个没有自带的自己装吧。m2e：http://m2eclipse.sonatype.org/sites/m2e，这个是必需的；m2e-extra：http://m2eclipse.sonatype.org/sites/m2e-extras，这个不是必需的。装完后，重启Eclipse，右键点击项目会发现多了Maven选项。</li>
-<li>Eclipse里还用进行一下设置，将maven的配置文件换成我们下的maven的配置文件。配置：Maven > installations > Add…。选到maven的目录添加进来就行了。</li>
-</ol>
-
-
-<h2>Usage</h2>
-
-<p>Maven也是遵循“约定由于配置”原则的，所以使用Maven管理项目时，有约定好的目录结构。说实话，有关java的东西的命令行我都不熟，这里只说说Maven常用的几个命令和Eclipse下的使用。Eclipse下使用Maven创建的Java项目目录结构：</p>
-
-<pre><code>/src/main/java        ＃项目主代码目录
-/src/test/java        ＃项目测试代码目录
-/target               ＃maven的输出目录
-pom.xml               ＃maven中最重要的文件，作用如build.xml之于Ant
-</code></pre>
-
-<p>一般我们还会创建一个/src/main/resources目录用于存放项目资源，这也是maven约定的资源存放目录。</p>
-
-<h3>Maven常用命令</h3>
-
-<ol>
-<li>mvn help:system  该命令会答应出系统的环境变量，有时会非常有用。</li>
-<li>mvn clean compile 该命令会清理输出目录/target并编译项目至/target/classes目录。</li>
-<li>mvn clean test 清理输出目录->处理主资源->编译主代码->处理测试资源->编译测试代码->测试。</li>
-<li>mvn clean package 打包命令，默认打包成jar包。打包后的包名为pom.xml文件定义的artifactId-version.jar。</li>
-<li>mvn clean install 安装命令，会将当前项目打包后安装到Maven的本地仓库中，使得可以在其他maven项目中使用该包。</li>
-</ol>
-
-
-<p>Maven的命令还有其他参数可选，根据项目需求查看文档选择所需参数。</p>
-
-<h3>在Eclipse中使用Maven</h3>
-
-<ol>
-<li>使用maven创建项目：
-<img src="/images/mvn-project-select.png"></li>
-<li>选择archetype来生成项目骨架：
-<img src="/images/mvn-artifact-select.png"></li>
-<li>填写几个关键信息：
-<img src="/images/mvn-project-info.png"></li>
-<li>点击finish，这样就创建了一个Maven项目。Eclipse已经集成了Maven的几个常用命令，只需使用右键菜单选择即可执行。</li>
-</ol>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-07-16T20:49:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2013</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/24/hello/">Hello</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/code-review/'>Code review</a>, <a class='category' href='/blog/categories/phabricator/'>Phabricator</a>
+  
+</span>
 
 
-<time datetime="2012-11-24T00:28:00+08:00" pubdate data-updated="true">Nov 24<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/11/24/hello/#disqus_thread">Comments</a>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;hello world&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is a test.</p>
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/16/using-maven-pom-dot-xml/" title="Previous Post: Using Maven(2): pom.xml">&laquo; Using Maven(2): pom.xml</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -650,7 +393,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/sezina">@sezina</a> on GitHub
@@ -696,6 +439,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -710,7 +454,10 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
       var disqus_shortname = 'sezina';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sezina.github.com/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/';
+        var disqus_url = 'http://sezina.github.com/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
