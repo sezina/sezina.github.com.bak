@@ -4,7 +4,7 @@
   <title><![CDATA[Sezina]]></title>
   <link href="http://sezina.github.com/atom.xml" rel="self"/>
   <link href="http://sezina.github.com/"/>
-  <updated>2013-07-17T01:02:50+08:00</updated>
+  <updated>2013-07-31T15:31:16+08:00</updated>
   <id>http://sezina.github.com/</id>
   <author>
     <name><![CDATA[Sezina]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Tomcat on Mac(OS X)]]></title>
+    <link href="http://sezina.github.com/blog/2013/07/31/installing-tomcat-on-mac-os-x/"/>
+    <updated>2013-07-31T15:13:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2013/07/31/installing-tomcat-on-mac-os-x</id>
+    <content type="html"><![CDATA[<p>Step 1. Download Tomcat7 Binary Distributions from Tomcat homepage.
+Step 2. Move the downloaded directory to <code>/usr/local</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo mv ~/Downloads/Apache-tomcat-7.0.24 /usr/local
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Step 3. Create a symbolic link in <code>/Library</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ln -s /usr/local/Apache-tomcat-7.0.24 /Library/Tomcat
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Step 4. Change ownership of <code>/Library/Tomcat</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown -R &lt;user_name&gt; /Library/Tomcat
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Step 5. Make all scripts executable:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chmod +x /Library/Tomcat/bin/*.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Step 6. Use command <code>/Library/Tomcat/bin/startup.sh</code> to start tomcat, then brower <code>http://localhost:8080</code>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Phabricator命令行工具Arcanist的基本用法]]></title>

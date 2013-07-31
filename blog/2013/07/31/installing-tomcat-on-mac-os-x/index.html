@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Sezina</title>
+  <title>Installing Tomcat on Mac(OS X) - Sezina</title>
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="Blog Archive 2013 Installing Tomcat on Mac(OS X)
-Jul 31 2013 posted in OS X, Tomcat Phabricator命令行工具Arcanist的基本用法
-Jul 16 2013 posted in Code review &hellip;">
+  <meta name="description" content="Step 1. Download Tomcat7 Binary Distributions from Tomcat homepage.
+Step 2. Move the downloaded directory to /usr/local: 1
+sudo mv ~/Downloads/Apache &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@ Jul 16 2013 posted in Code review &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sezina.github.com/blog/archives/">
+  <link rel="canonical" href="http://sezina.github.com/blog/2013/07/31/installing-tomcat-on-mac-os-x/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,95 +79,124 @@ Jul 16 2013 posted in Code review &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Installing Tomcat on Mac(OS X)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-31T15:13:00+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>Step 1. Download Tomcat7 Binary Distributions from Tomcat homepage.
+Step 2. Move the downloaded directory to <code>/usr/local</code>:</p>
 
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/07/31/installing-tomcat-on-mac-os-x/">Installing Tomcat on Mac(OS X)</a></h1>
-<time datetime="2013-07-31T15:13:00+08:00" pubdate><span class='month'>Jul</span> <span class='day'>31</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/os-x/'>OS X</a>, <a class='category' href='/blog/categories/tomcat/'>Tomcat</a></span>
-</footer>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo mv ~/Downloads/Apache-tomcat-7.0.24 /usr/local
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>Step 3. Create a symbolic link in <code>/Library</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ln -s /usr/local/Apache-tomcat-7.0.24 /Library/Tomcat
+</span></code></pre></td></tr></table></div></figure>
 
 
+<p>Step 4. Change ownership of <code>/Library/Tomcat</code>:</p>
 
-<article>
-  
-<h1><a href="/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/">Phabricator命令行工具Arcanist的基本用法</a></h1>
-<time datetime="2013-07-16T20:49:00+08:00" pubdate><span class='month'>Jul</span> <span class='day'>16</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/code-review/'>Code review</a>, <a class='category' href='/blog/categories/phabricator/'>Phabricator</a></span>
-</footer>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown -R &lt;user_name&gt; /Library/Tomcat
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>Step 5. Make all scripts executable:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chmod +x /Library/Tomcat/bin/*.sh
+</span></code></pre></td></tr></table></div></figure>
 
 
-
-  
-  <h2>2012</h2>
-
-<article>
-  
-<h1><a href="/blog/2012/12/16/using-maven-pom-dot-xml/">Using Maven(2): pom.xml</a></h1>
-<time datetime="2012-12-16T16:24:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>16</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2012/12/15/using-maven-basic/">Using Maven(1): Basic</a></h1>
-<time datetime="2012-12-15T12:18:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>15</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2012/11/24/hello/">Hello</a></h1>
-<time datetime="2012-11-24T00:28:00+08:00" pubdate><span class='month'>Nov</span> <span class='day'>24</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/python/'>python</a></span>
-</footer>
-
-
-</article>
-
+<p>Step 6. Use command <code>/Library/Tomcat/bin/startup.sh</code> to start tomcat, then brower <code>http://localhost:8080</code>.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Sezina</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-31T15:13:00+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/os-x/'>OS X</a>, <a class='category' href='/blog/categories/tomcat/'>Tomcat</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/" title="Previous Post: Phabricator命令行工具Arcanist的基本用法">&laquo; Phabricator命令行工具Arcanist的基本用法</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -266,7 +295,10 @@ Jul 16 2013 posted in Code review &hellip;">
       var disqus_shortname = 'sezina';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sezina.github.com/blog/2013/07/31/installing-tomcat-on-mac-os-x/';
+        var disqus_url = 'http://sezina.github.com/blog/2013/07/31/installing-tomcat-on-mac-os-x/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

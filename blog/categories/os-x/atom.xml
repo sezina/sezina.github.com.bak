@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: OS X | Sezina]]></title>
+  <link href="http://sezina.github.com/blog/categories/os-x/atom.xml" rel="self"/>
+  <link href="http://sezina.github.com/"/>
+  <updated>2013-07-31T15:31:16+08:00</updated>
+  <id>http://sezina.github.com/</id>
+  <author>
+    <name><![CDATA[Sezina]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Tomcat on Mac(OS X)]]></title>
+    <link href="http://sezina.github.com/blog/2013/07/31/installing-tomcat-on-mac-os-x/"/>
+    <updated>2013-07-31T15:13:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2013/07/31/installing-tomcat-on-mac-os-x</id>
+    <content type="html"><![CDATA[<p>Step 1. Download Tomcat7 Binary Distributions from Tomcat homepage.
+Step 2. Move the downloaded directory to <code>/usr/local</code>:
+<code>bash
+sudo mv ~/Downloads/Apache-tomcat-7.0.24 /usr/local
+</code></p>
+
+<p>Step 3. Create a symbolic link in <code>/Library</code>:
+<code>bash
+sudo ln -s /usr/local/Apache-tomcat-7.0.24 /Library/Tomcat
+</code></p>
+
+<p>Step 4. Change ownership of <code>/Library/Tomcat</code>:
+<code>bash
+sudo chown -R &lt;user_name&gt; /Library/Tomcat
+</code></p>
+
+<p>Step 5. Make all scripts executable:
+<code>bash
+sudo chmod +x /Library/Tomcat/bin/*.sh
+</code></p>
+
+<p>Step 6. Use command <code>/Library/Tomcat/bin/startup.sh</code> to start tomcat, then brower <code>http://localhost:8080</code>.</p>
+]]></content>
+  </entry>
+  
+</feed>
