@@ -9,9 +9,7 @@
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="Step 1. Download Tomcat7 Binary Distributions from Tomcat homepage.
-Step 2. Move the downloaded directory to /usr/local: 1
-sudo mv ~/Downloads/Apache &hellip;">
+  <meta name="description" content="昨日惊闻LeetCode这东西，听说上面的OJ都是些面试题，又据说是去北美找工作的人都会上去刷刷题，于是带着作为技术人对硅谷无比向往的心情注册了个号开刷，准备在接下来的这一段上算法课时间里把它刷完（一个美好的愿景）。 首先，上一道和所有OJ的第一道a＋b一样的题： Given an array &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +78,110 @@ sudo mv ~/Downloads/Apache &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/31/leetcode-two-sum/">LeetCode &#8212; Two Sum</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-31T13:04:00+08:00" pubdate data-updated="true">Oct 31<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/10/31/leetcode-two-sum/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨日惊闻LeetCode这东西，听说上面的OJ都是些面试题，又据说是去北美找工作的人都会上去刷刷题，于是带着作为技术人对硅谷无比向往的心情注册了个号开刷，准备在接下来的这一段上算法课时间里把它刷完（一个美好的愿景）。</p>
+
+<p>首先，上一道和所有OJ的第一道a＋b一样的题：</p>
+
+<pre><code>  Given an array of integers, find two numbers such
+that they add up to a specific target number.
+  The function twoSum should return indices of the
+two numbers such that they add up to the target,
+where index1 must be less than index2. Please note
+that your returned answers (both index1 and index2)
+are not zero-based.
+  You may assume that each input would have exactly
+one solution.
+
+**Input**: numbers={2, 7, 11, 15}, target=9
+**Output**: index1=1, index2=2
+</code></pre>
+
+<p>中文意思就是：</p>
+
+<pre><code>给定一个数列，找到两个数，它们相加刚好等于给定的target的值。
+函数twoSum 应该返回这两个数的下标indx1和index2，且要求index1 &lt; index2，注意，这里的下标不是从0开始的。
+
+**示例输入**：numbers={2, 7, 11, 15}, target=9
+**示例输出**：index1=1, index2=2
+</code></pre>
+
+<p>看完题意简单吧，就是a＋b的问题。我直接写了两个for循环对数组进行循环判断。下面是我的C++实现。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="n">result</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>                    <span class="n">result</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>                    <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -698,6 +800,10 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/31/leetcode-two-sum/">LeetCode &#8212; Two Sum</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/31/installing-tomcat-on-mac-os-x/">Installing Tomcat on Mac(OS X)</a>
       </li>
     
@@ -711,10 +817,6 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     
       <li class="post">
         <a href="/blog/2012/12/15/using-maven-basic/">Using Maven(1): Basic</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/24/hello/">Hello</a>
       </li>
     
   </ul>
@@ -755,6 +857,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     <li class='category'><a href='/blog/categories/code-review/'>Code review (1)</a></li>
 <li class='category'><a href='/blog/categories/eclipse/'>Eclipse (2)</a></li>
 <li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
+<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (1)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>
 <li class='category'><a href='/blog/categories/phabricator/'>Phabricator (1)</a></li>
