@@ -4,7 +4,7 @@
   <title><![CDATA[Category: LeetCode | Sezina]]></title>
   <link href="http://sezina.github.com/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://sezina.github.com/"/>
-  <updated>2013-11-01T16:54:58+08:00</updated>
+  <updated>2013-11-05T12:28:23+08:00</updated>
   <id>http://sezina.github.com/</id>
   <author>
     <name><![CDATA[Sezina]]></name>
@@ -12,6 +12,111 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode --- Single Number]]></title>
+    <link href="http://sezina.github.com/blog/2013/11/05/leetcode-single-number/"/>
+    <updated>2013-11-05T09:25:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2013/11/05/leetcode-single-number</id>
+    <content type="html"><![CDATA[<p>英文原题：</p>
+
+<pre><code>Given an array of integers, every element appears twice except for one. Find that single one.
+
+Note:
+Your algorithm should have a linear runtime complexity. 
+Could you implement it without using extra memory?
+</code></pre>
+
+<p>中文大意：</p>
+
+<pre><code>给定一个由整数组成的数组，除了一个数之外其他的元素都出现了两次。请找出这个单独的数。
+
+注意：
+你的算法的时间复杂度要是线性的。你是否能够不用额外的存储空间解决这个问题？
+</code></pre>
+
+<p>第一次看到这题，看完第一句的时候估计不少人瞬间就有了解法然后，然后看完“注意”后，傻眼了。
+这道题用到了数在计算机中的表示及位运算。一个数与其自身做异或操作<code>^</code>等于0！利用这个特性，将数组中所有元素进行异或操作，最后的结果就是那个单独的数字。</p>
+
+<p>```cpp
+class Solution {
+public:</p>
+
+<pre><code>int singleNumber(int A[], int n) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    for (int i = 1; i &lt; n; i++) {
+        A[0] ^= A[i];
+    }
+    return A[0];
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode --- Reverse Integer]]></title>
+    <link href="http://sezina.github.com/blog/2013/11/05/leetcode-reverse-integer/"/>
+    <updated>2013-11-05T09:11:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2013/11/05/leetcode-reverse-integer</id>
+    <content type="html"><![CDATA[<p>原题：</p>
+
+<pre><code>Reverse digits of an integer.
+
+Example1: x = 123, return 321
+Example2: x = -123, return -321
+
+
+Have you thought about this?
+Here are some good questions to ask before coding.
+Bonus points for you if you have already thought through this!
+
+If the integer's last digit is 0, what should the output be? ie, cases such as 10, 100.
+
+Did you notice that the reversed integer might overflow? Assume the input 
+is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?
+
+Throw an exception? Good, but what if throwing an exception is not an option? 
+You would then have to re-design the function (ie, add an extra parameter).
+</code></pre>
+
+<p>中文大意是：</p>
+
+<pre><code>反转给定的整数。
+
+如果考虑了以下问题有加分。
+当给定的整数末尾为0的情况。
+给定的整数在32位int范围内，但反转后会溢出的情况，如1000000003反转后就会溢出。
+
+抛出异常来处理？好，但如果抛出异常不是我们希望的做法呢？你将要重新设计函数。
+</code></pre>
+
+<p>说实在的我没搞懂这道题要考察什么，如果说是那两种意外情况，那只需声明一个long long类型的变量就搞定了。</p>
+
+<p>```cpp
+class Solution {
+public:</p>
+
+<pre><code>int reverse(int x) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    long long result = 0;
+    while (x) {
+        result = result * 10 + (x % 10);
+        x /= 10;
+    }
+
+    return result;
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LeetCode --- Add Two Numbers]]></title>

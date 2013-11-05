@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Tomcat - Sezina</title>
+  <title>LeetCode --- Reverse Integer - Sezina</title>
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="Category: Tomcat">
+  <meta name="description" content="原题： Reverse digits of an integer. Example1: x = 123, return 321
+Example2: x = -123, return -321 Have you thought about this?
+Here are some good &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sezina.github.comblog/categories/tomcat/">
+  <link rel="canonical" href="http://sezina.github.com/blog/2013/11/05/leetcode-reverse-integer/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,36 +79,160 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Tomcat</h1>
+    
+      <h1 class="entry-title">LeetCode --- Reverse Integer</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T09:11:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>原题：</p>
 
-  
-  <h2>2013</h2>
+<pre><code>Reverse digits of an integer.
 
-<article>
-  
-<h1><a href="/blog/2013/07/31/installing-tomcat-on-mac-os-x/">Installing Tomcat on Mac(OS X)</a></h1>
-<time datetime="2013-07-31T15:13:00+08:00" pubdate><span class='month'>Jul</span> <span class='day'>31</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/os-x/'>OS X</a>, <a class='category' href='/blog/categories/tomcat/'>Tomcat</a></span>
-</footer>
+Example1: x = 123, return 321
+Example2: x = -123, return -321
 
 
-</article>
+Have you thought about this?
+Here are some good questions to ask before coding.
+Bonus points for you if you have already thought through this!
+
+If the integer's last digit is 0, what should the output be? ie, cases such as 10, 100.
+
+Did you notice that the reversed integer might overflow? Assume the input 
+is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?
+
+Throw an exception? Good, but what if throwing an exception is not an option? 
+You would then have to re-design the function (ie, add an extra parameter).
+</code></pre>
+
+<p>中文大意是：</p>
+
+<pre><code>反转给定的整数。
+
+如果考虑了以下问题有加分。
+当给定的整数末尾为0的情况。
+给定的整数在32位int范围内，但反转后会溢出的情况，如1000000003反转后就会溢出。
+
+抛出异常来处理？好，但如果抛出异常不是我们希望的做法呢？你将要重新设计函数。
+</code></pre>
+
+<p>说实在的我没搞懂这道题要考察什么，如果说是那两种意外情况，那只需声明一个long long类型的变量就搞定了。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="kt">long</span> <span class="kt">long</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">x</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Sezina</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T09:11:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/leetcode/'>LeetCode</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/01/leetcode-add-two-numbers/" title="Previous Post: LeetCode --- Add Two Numbers">&laquo; LeetCode --- Add Two Numbers</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/11/05/leetcode-single-number/" title="Next Post: LeetCode --- Single Number">LeetCode --- Single Number &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -206,7 +332,10 @@
       var disqus_shortname = 'sezina';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sezina.github.com/blog/2013/11/05/leetcode-reverse-integer/';
+        var disqus_url = 'http://sezina.github.com/blog/2013/11/05/leetcode-reverse-integer/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
