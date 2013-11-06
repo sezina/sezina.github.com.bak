@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Java - Sezina</title>
+  <title>LeetCode --- Remove Duplicates from Sorted Array - Sezina</title>
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="Category: Java">
+  <meta name="description" content="原题： Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sezina.github.comblog/categories/java/">
+  <link rel="canonical" href="http://sezina.github.com/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,50 +77,155 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Java</h1>
+    
+      <h1 class="entry-title">LeetCode --- Remove Duplicates From Sorted Array</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T13:52:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>原题：</p>
 
-  
-  <h2>2012</h2>
+<pre><code>Given a sorted array, remove the duplicates in place such that each element appear 
+only once and return the new length.
 
-<article>
-  
-<h1><a href="/blog/2012/12/16/using-maven-pom-dot-xml/">Using Maven(2): pom.xml</a></h1>
-<time datetime="2012-12-16T16:24:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>16</span> <span class='year'>2012</span></time>
+Do not allocate extra space for another array, you must do this in place with constant memory.
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
+For example,
 
+Given input array A = [1,1,2],
 
-</article>
+Your function should return length = 2, and A is now [1,2].
+</code></pre>
 
+<p>中文大意是：</p>
 
+<pre><code>给定一个排好序的数组，移除所有重复的元素，使得所有元素在数组中只出现一次，不允许使用额外的数组。
 
-<article>
-  
-<h1><a href="/blog/2012/12/15/using-maven-basic/">Using Maven(1): Basic</a></h1>
-<time datetime="2012-12-15T12:18:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>15</span> <span class='year'>2012</span></time>
+例如，
+输入为 A ＝ [1, 1, 2]
+输出是 2 (去重后数组的长度)
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
+<p>这道题在原数组上做操作，比如给出的例子操作后变为了<code>A = [1, 2, 2]</code>(赋值)或是<code>A = [1, 2, 1]</code>(交换)，只是返回长度为2.</p>
 
-
-</article>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">removeDuplicates</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">new_len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">A</span><span class="p">[</span><span class="n">new_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="n">new_len</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">new_len</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Sezina</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T13:52:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/leetcode/'>LeetCode</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/05/leetcode-single-number/" title="Previous Post: LeetCode --- Single Number">&laquo; LeetCode --- Single Number</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -220,7 +325,10 @@
       var disqus_shortname = 'sezina';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sezina.github.com/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/';
+        var disqus_url = 'http://sezina.github.com/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

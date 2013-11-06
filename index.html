@@ -9,8 +9,7 @@
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="英文原题： Given an array of integers, every element appears twice except for one. Find that single one. Note:
-Your algorithm should have a linear runtime &hellip;">
+  <meta name="description" content="原题： Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,104 @@ Your algorithm should have a linear runtime &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/">LeetCode &#8212; Remove Duplicates From Sorted Array</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T13:52:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>原题：</p>
+
+<pre><code>Given a sorted array, remove the duplicates in place such that each element appear 
+only once and return the new length.
+
+Do not allocate extra space for another array, you must do this in place with constant memory.
+
+For example,
+
+Given input array A = [1,1,2],
+
+Your function should return length = 2, and A is now [1,2].
+</code></pre>
+
+<p>中文大意是：</p>
+
+<pre><code>给定一个排好序的数组，移除所有重复的元素，使得所有元素在数组中只出现一次，不允许使用额外的数组。
+
+例如，
+输入为 A ＝ [1, 1, 2]
+输出是 2 (去重后数组的长度)
+</code></pre>
+
+<p>这道题在原数组上做操作，比如给出的例子操作后变为了<code>A = [1, 2, 2]</code>(赋值)或是<code>A = [1, 2, 1]</code>(交换)，只是返回长度为2.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">removeDuplicates</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">new_len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">A</span><span class="p">[</span><span class="n">new_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="n">new_len</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">new_len</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1163,6 +1260,10 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/">LeetCode &#8212; Remove Duplicates from Sorted Array</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/11/05/leetcode-single-number/">LeetCode &#8212; Single Number</a>
       </li>
     
@@ -1176,10 +1277,6 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     
       <li class="post">
         <a href="/blog/2013/10/31/leetcode-two-sum/">LeetCode &#8212; Two Sum</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/31/installing-tomcat-on-mac-os-x/">Installing Tomcat on Mac(OS X)</a>
       </li>
     
   </ul>
@@ -1220,7 +1317,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     <li class='category'><a href='/blog/categories/code-review/'>Code review (1)</a></li>
 <li class='category'><a href='/blog/categories/eclipse/'>Eclipse (2)</a></li>
 <li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
-<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (4)</a></li>
+<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (5)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>
 <li class='category'><a href='/blog/categories/phabricator/'>Phabricator (1)</a></li>
