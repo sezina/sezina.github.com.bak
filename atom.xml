@@ -4,7 +4,7 @@
   <title><![CDATA[Sezina]]></title>
   <link href="http://sezina.github.com/atom.xml" rel="self"/>
   <link href="http://sezina.github.com/"/>
-  <updated>2013-11-06T08:46:26+08:00</updated>
+  <updated>2013-11-10T08:57:36+08:00</updated>
   <id>http://sezina.github.com/</id>
   <author>
     <name><![CDATA[Sezina]]></name>
@@ -12,6 +12,68 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode --- Remove Element]]></title>
+    <link href="http://sezina.github.com/blog/2013/11/10/leetcode-remove-element/"/>
+    <updated>2013-11-10T08:45:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2013/11/10/leetcode-remove-element</id>
+    <content type="html"><![CDATA[<p>原题：</p>
+
+<pre><code>Given an array and a value, remove all instances of that value in place and return the new length.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+</code></pre>
+
+<p>中文大意：</p>
+
+<pre><code>给定一个数组和一个数，移除该数组中所有等于这个数的元素并返回删除元素后数组的长度。
+
+数组中元素的顺序可以改变，超出新长度的部分数组的值为什么都可以。
+</code></pre>
+
+<p>需要注意的是，数组一直是那个数组，返回的是新数组的长度，也就是说下标小于新长度的数组元素必须是保存了数组删除了特定数后剩余的所有元素。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">removeElement</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">del_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">elem</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="n">del_count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>              <span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">del_count</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">n</span> <span class="o">-</span> <span class="n">del_count</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LeetCode --- Remove Duplicates from Sorted Array]]></title>

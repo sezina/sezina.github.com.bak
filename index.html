@@ -9,7 +9,7 @@
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="原题： Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra &hellip;">
+  <meta name="description" content="原题： Given an array and a value, remove all instances of that value in place and return the new length. The order of elements can be changed. It doesn &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,97 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/10/leetcode-remove-element/">LeetCode &#8212; Remove Element</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-10T08:45:00+08:00" pubdate data-updated="true">Nov 10<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/11/10/leetcode-remove-element/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>原题：</p>
+
+<pre><code>Given an array and a value, remove all instances of that value in place and return the new length.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+</code></pre>
+
+<p>中文大意：</p>
+
+<pre><code>给定一个数组和一个数，移除该数组中所有等于这个数的元素并返回删除元素后数组的长度。
+
+数组中元素的顺序可以改变，超出新长度的部分数组的值为什么都可以。
+</code></pre>
+
+<p>需要注意的是，数组一直是那个数组，返回的是新数组的长度，也就是说下标小于新长度的数组元素必须是保存了数组删除了特定数后剩余的所有元素。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">removeElement</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">del_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">elem</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="n">del_count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>              <span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">del_count</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">n</span> <span class="o">-</span> <span class="n">del_count</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1202,52 +1293,9 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/24/hello/">Hello</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-24T00:28:00+08:00" pubdate data-updated="true">Nov 24<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/11/24/hello/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;hello world&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is a test.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -1258,6 +1306,10 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/10/leetcode-remove-element/">LeetCode &#8212; Remove Element</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/">LeetCode &#8212; Remove Duplicates from Sorted Array</a>
@@ -1273,10 +1325,6 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     
       <li class="post">
         <a href="/blog/2013/11/01/leetcode-add-two-numbers/">LeetCode &#8212; Add Two Numbers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/31/leetcode-two-sum/">LeetCode &#8212; Two Sum</a>
       </li>
     
   </ul>
@@ -1317,7 +1365,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     <li class='category'><a href='/blog/categories/code-review/'>Code review (1)</a></li>
 <li class='category'><a href='/blog/categories/eclipse/'>Eclipse (2)</a></li>
 <li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
-<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (5)</a></li>
+<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (6)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>
 <li class='category'><a href='/blog/categories/phabricator/'>Phabricator (1)</a></li>

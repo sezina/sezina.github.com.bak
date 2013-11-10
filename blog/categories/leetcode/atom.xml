@@ -4,7 +4,7 @@
   <title><![CDATA[Category: LeetCode | Sezina]]></title>
   <link href="http://sezina.github.com/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://sezina.github.com/"/>
-  <updated>2013-11-06T08:46:26+08:00</updated>
+  <updated>2013-11-10T08:57:36+08:00</updated>
   <id>http://sezina.github.com/</id>
   <author>
     <name><![CDATA[Sezina]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode --- Remove Element]]></title>
+    <link href="http://sezina.github.com/blog/2013/11/10/leetcode-remove-element/"/>
+    <updated>2013-11-10T08:45:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2013/11/10/leetcode-remove-element</id>
+    <content type="html"><![CDATA[<p>原题：</p>
+
+<pre><code>Given an array and a value, remove all instances of that value in place and return the new length.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+</code></pre>
+
+<p>中文大意：</p>
+
+<pre><code>给定一个数组和一个数，移除该数组中所有等于这个数的元素并返回删除元素后数组的长度。
+
+数组中元素的顺序可以改变，超出新长度的部分数组的值为什么都可以。
+</code></pre>
+
+<p>需要注意的是，数组一直是那个数组，返回的是新数组的长度，也就是说下标小于新长度的数组元素必须是保存了数组删除了特定数后剩余的所有元素。</p>
+
+<p>```cpp
+class Solution {
+public:</p>
+
+<pre><code>int removeElement(int A[], int n, int elem) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    int del_count = 0;
+    for (int i = 0; i &lt; n; ++i)
+    {
+        if (A[i] == elem)
+        {
+            del_count++;
+        } else {
+            A[i - del_count] = A[i];
+        }
+    }
+    return n - del_count;
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LeetCode --- Remove Duplicates from Sorted Array]]></title>
@@ -259,66 +306,6 @@ public:</p>
         last_one-&gt;next = new ListNode(carry);
     }
     return result_l;
-}
-</code></pre>
-
-<p>};
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LeetCode --- Two Sum]]></title>
-    <link href="http://sezina.github.com/blog/2013/10/31/leetcode-two-sum/"/>
-    <updated>2013-10-31T13:04:00+08:00</updated>
-    <id>http://sezina.github.com/blog/2013/10/31/leetcode-two-sum</id>
-    <content type="html"><![CDATA[<p>昨日惊闻LeetCode这东西，听说上面的OJ都是些面试题，又据说是去北美找工作的人都会上去刷刷题，于是带着作为技术人对硅谷无比向往的心情注册了个号开刷，准备在接下来的这一段上算法课时间里把它刷完（一个美好的愿景）。</p>
-
-<p>首先，上一道和所有OJ的第一道a＋b一样的题：</p>
-
-<pre><code>  Given an array of integers, find two numbers such
-that they add up to a specific target number.
-  The function twoSum should return indices of the
-two numbers such that they add up to the target,
-where index1 must be less than index2. Please note
-that your returned answers (both index1 and index2)
-are not zero-based.
-  You may assume that each input would have exactly
-one solution.
-
-**Input**: numbers={2, 7, 11, 15}, target=9
-**Output**: index1=1, index2=2
-</code></pre>
-
-<p>中文意思就是：</p>
-
-<pre><code>给定一个数列，找到两个数，它们相加刚好等于给定的target的值。
-函数twoSum 应该返回这两个数的下标indx1和index2，且要求index1 &lt; index2，注意，这里的下标不是从0开始的。
-
-**示例输入**：numbers={2, 7, 11, 15}, target=9
-**示例输出**：index1=1, index2=2
-</code></pre>
-
-<p>看完题意简单吧，就是a＋b的问题。我直接写了两个for循环对数组进行循环判断。下面是我的C++实现。</p>
-
-<p>```cpp
-class Solution {
-public:</p>
-
-<pre><code>vector&lt;int&gt; twoSum(vector&lt;int&gt; &amp;numbers, int target) {
-    // IMPORTANT: Please reset any member data you declared, as
-    // the same Solution instance will be reused for each test case.
-    vector&lt;int&gt; result;
-    for (int i = 0; i &lt; numbers.size(); i++) {
-        for (int j = i + 1; numbers[i] &lt;= target &amp;&amp; j &lt; numbers.size(); j++) {
-            if (numbers[j] &lt;= target &amp;&amp; numbers[i] + numbers[j] == target) {
-                result.push_back(i + 1);
-                result.push_back(j + 1);
-                break;
-            }
-        }
-    }
-    return result;
 }
 </code></pre>
 
