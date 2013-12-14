@@ -9,32 +9,7 @@
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="Coordinate(坐标) pom.xml1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0& &hellip;">
+  <meta name="description" content="Pharicator是FB的代码审查工具，现在我所在的团队也使用它来进行代码质量的控制。其提供了一个differential(code review)命令行工具Arcanist(arc)。本文仅从本人的日常使用中总结出Arcanist比较常用的用法做个简单介绍。 环境说明 OS: OS X &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +78,240 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/">Phabricator命令行工具Arcanist的基本用法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-16T20:49:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/07/16/phabricatorming-ling-xing-gong-ju-arcanistde-ji-ben-yong-fa/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://phabricator.org" title="Phabricator">Pharicator</a>是FB的代码审查工具，现在我所在的团队也使用它来进行代码质量的控制。其提供了一个differential(code review)命令行工具Arcanist(arc)。本文仅从本人的日常使用中总结出Arcanist比较常用的用法做个简单介绍。</p>
+
+<p><strong>环境说明</strong></p>
+
+<ul>
+<li>OS: OS X Mountail Lion</li>
+<li>SCV: svn</li>
+<li>IDE: Eclipse</li>
+</ul>
+
+
+<h2>安装</h2>
+
+<ul>
+<li>将Arcanist的源码拷贝到本地</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>somewhere/ <span class="nv">$ </span>git clone git://github.com/facebook/libphutil.git
+</span><span class='line'>somewhere/ <span class="nv">$ </span>git clone git://github.com/facebook/arcanist.git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>将arc的路径加入到系统路径中</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/somewhere/arcanist/bin/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或在系统的profile或是bash(如果用bash)的配置文件的末尾加上这一句。</p>
+
+<ul>
+<li>命令行中输入<code>arc</code>看提示确认是否安装成功。</li>
+</ul>
+
+
+<h2>arc配置</h2>
+
+<ul>
+<li>arc的全局配置</li>
+</ul>
+
+
+<p>配置arc的默认编辑器，我使用vim</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>arc <span class="nb">set</span>-config editor <span class="s2">&quot;vim&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>配置默认的phabricator的uri，uri为团队的phabricator主页的url</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>arc <span class="nb">set</span>-config default http://phabricator.example.com
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在项目的根目录下建<code>.arcconfig</code>配置文件，文件中至少要填入以下内容</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>.arcconfig</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;project_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;your project name&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;conduit_uri&quot;</span> <span class="p">:</span> <span class="s2">&quot;your phabricator url&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>举个例子：</p>
+
+<figure class='code'><figcaption><span>.arcconfig</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;project_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;HelloWorld&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;conduit_uri&quot;</span> <span class="p">:</span> <span class="s2">&quot;http://phabricator.example.com&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>该配置文件还可以配置静态代码检测引擎(lint)和单元测试引擎。</p>
+
+<ul>
+<li>为项目安装证书，用于phabricator的认证。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yourproject/ <span class="nv">$ </span>arc install-certificate
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接着按照命令行提示操作就OK了。</p>
+
+<p>弄完这一步，才能真正在项目中使用arc。</p>
+
+<h2>在项目中使用arc</h2>
+
+<ul>
+<li><code>arc help [--full | [COMMAND]]</code> 查看帮助文档，接参数<code>--full</code>查看所有命令的详细用法，接具体的命令<code>[COMMAND]</code>如<code>arc help diff</code>可以查看该命令的详细用法。</li>
+<li>想phabricator提交review request(Differential).修改完代码后，使用<code>arc diff &lt;path&gt;</code>命令提交review request，该命令会产生一个包含如下内容的文件要求填写：</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="s">&lt;&lt;Enter Revision Title&gt;&gt;         </span>
+</span><span class='line'><span class="s"> </span>
+</span><span class='line'><span class="s">Summary:</span>
+</span><span class='line'><span class="s"> </span>
+</span><span class='line'><span class="s">Test Plan:</span>
+</span><span class='line'><span class="s"> </span>
+</span><span class='line'><span class="s">Reviewers:</span>
+</span><span class='line'><span class="s"> </span>
+</span><span class='line'><span class="s">CC:</span>
+</span><span class='line'>
+</span><span class='line'><span class="s">Maniphest Tasks:</span>
+</span><span class='line'><span class="s"> </span>
+</span><span class='line'><span class="s"># NE</span>W DIFFERENTIAL REVISION
+</span><span class='line'><span class="c"># Describe the changes in this new revision.</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># arc could not identify any existing revision in your working copy.</span>
+</span><span class='line'><span class="c"># If you intended to update an existing revision, use:</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#   $ arc diff --update &lt;revision&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按照提示填写后，保存退出，arc就会自动提交request。<code>Reviewers</code>用逗号隔开，<code>Maniphest Tasks</code>填相关联的phabricator上的<code>task_id</code>，如<code>T100</code>。Test plan暂时没用过，官方文档：<a href="http://www.phabricator.com/docs/phabricator/article/Differential_User_Guide_Test_Plans.html">http://www.phabricator.com/docs/phabricator/article/Differential_User_Guide_Test_Plans.html</a></p>
+
+<p>提交完成后，会产生一个形如<code>http://phabricator.example.com/D24</code>的url，url中的<code>D24</code>是revision_id。</p>
+
+<ul>
+<li><code>arc diff --update &lt;revision_id&gt;</code>更新<revision_id>对应的review request。该命令产生一个如下的文件，按提示填写保存退出，arc会提交更新。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Updating D27: hahahah</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># Enter a brief description of the changes included in this update.</span>
+</span><span class='line'><span class="c"># The first line is used as subject, next lines as comment.</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># If you intended to create a new revision, use:</span>
+</span><span class='line'><span class="c">#  $ arc diff --create</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><code>arc commit --revision &lt;revision_id&gt;</code>提交对应<revision_id>提交代码更改，这个命令把svn commit的工作也做掉了，直接提交到代码库。</li>
+<li><code>arc todo &lt;description&gt; [option]</code>可以快速给自己在phabricator上创建task，<code>[option]</code>用于把task CC给其他人.</li>
+<li><code>arc tasks [options]</code> 查看Maniphest的tasks。</li>
+<li><code>arc amend --show</code> 查看当前项目的differentials，<code>arc amend --revision &lt;revision_id&gt; --show</code> 查看指定revision_id的differential。</li>
+</ul>
+
+
+<p><strong>Reference:</strong></p>
+
+<ol>
+<li>Arcanist官方文档： <a href="http://www.phabricator.com/docs/phabricator/article/Arcanist_User_Guide.html">http://www.phabricator.com/docs/phabricator/article/Arcanist_User_Guide.html</a></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -422,6 +631,10 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/14/my-2013/">我的2013</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/12/after-peculiar-life/">读《奇特的一生》</a>
       </li>
     
@@ -435,10 +648,6 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     
       <li class="post">
         <a href="/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/">LeetCode &#8212; Remove Duplicates from Sorted Array</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/05/leetcode-single-number/">LeetCode &#8212; Single Number</a>
       </li>
     
   </ul>
@@ -480,6 +689,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
 <li class='category'><a href='/blog/categories/eclipse/'>Eclipse (2)</a></li>
 <li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
 <li class='category'><a href='/blog/categories/leetcode/'>LeetCode (6)</a></li>
+<li class='category'><a href='/blog/categories/life/'>Life (1)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>
 <li class='category'><a href='/blog/categories/phabricator/'>Phabricator (1)</a></li>

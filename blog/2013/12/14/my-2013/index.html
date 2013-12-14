@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Using Maven(1): Basic - Sezina</title>
+  <title>我的2013 - Sezina</title>
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="Maven是Apache的一个开源项目，主要用于Java项目的构建、依赖管理和项目信息管理。Maven是个异常强大的自动化构建工具。这篇博文是我在开发过程中使用Maven的学习笔记。 环境： ubuntu 12.04
-Eclipse J2EE版本(惭愧只用过Eclipse)
-Maven 3.0.0 &hellip;">
+  <meta name="description" content="2013年，本科毕业，众同学工作的工作，留学的留学，剩下几个读研了。我也是那剩下的几个之一。 今天做个小小的年度总结，虽然还没到12月31号，但我总觉得我的2013年（学习、工作年度）早可以结束了，进入下一年度了。 关于学业 首先，从学业开始。2013年是大四下学期，除了写了个毕业论文， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Maven 3.0.0 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sezina.github.com/blog/2012/12/15/using-maven-basic/">
+  <link rel="canonical" href="http://sezina.github.com/blog/2013/12/14/my-2013/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,7 +81,7 @@ Maven 3.0.0 &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Using Maven(1): Basic</h1>
+      <h1 class="entry-title">我的2013</h1>
     
     
       <p class="meta">
@@ -99,7 +97,7 @@ Maven 3.0.0 &hellip;">
   
 
 
-<time datetime="2012-12-15T12:18:00+08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+<time datetime="2013-12-14T09:30:00+08:00" pubdate data-updated="true">Dec 14<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -108,66 +106,126 @@ Maven 3.0.0 &hellip;">
   </header>
 
 
-<div class="entry-content"><p>Maven是Apache的一个开源项目，主要用于Java项目的构建、依赖管理和项目信息管理。Maven是个异常强大的自动化构建工具。这篇博文是我在开发过程中使用Maven的学习笔记。</p>
+<div class="entry-content"><p>2013年，本科毕业，众同学工作的工作，留学的留学，剩下几个读研了。我也是那剩下的几个之一。</p>
 
-<p>环境：</p>
+<p>今天做个小小的年度总结，虽然还没到12月31号，但我总觉得我的2013年（学习、工作年度）早可以结束了，进入下一年度了。</p>
+
+<h3>关于学业</h3>
+
+<p>首先，从学业开始。2013年是大四下学期，除了写了个毕业论文，没有什么和本科有关的学业了，毫无悬念的顺利毕业。接着就保研本院读研究生，到现在新年将近，本学期已经结束了算是2门课了，剩下两篇英语作文、一场机试、一场笔试和一篇小论文。</p>
+
+<h3>关于工作</h3>
+
+<p>整个大四下学期和暑假都在老师Arber的公司实习，主要的工作有两个产品，一个是微信平台的“一找小七”（微信号：yeezhao_007），负责后台开放，做过一段时间的产品经理；上过一次报纸（信息时报），因此火了一阵；顺便去参加了个微信平台的T派比赛，获华南区金奖，之后被36Kr报道，又火了一阵，这次有几个vc找过来；T派的比赛，最后的总决赛得了银奖。另一个产品是“一找搜客”（so.yeezhao.com），这是一个微博搜人的搜索引擎，这次我是负责前端，由于研究生开学要回学校上课，我只做到了第一版上线。</p>
+
+<h3>关于读书</h3>
+
+<p>今年大部分时间没什么课，没有学业压力，所以有较多的时间看书阅读。尽管有较多时间看书（比之前多），但我看书速度较慢，所以也没看完多少。下面的列表就是我今年的书单。</p>
+
+<h5>工具书</h5>
 
 <ul>
-<li>ubuntu 12.04</li>
-<li>Eclipse J2EE版本(惭愧只用过Eclipse)</li>
-<li>Maven 3.0.0+</li>
+<li>《无苹果不生活 OS X Mountain Lion随身宝典》：本人用的是mac book pro，本来想看看有没有什么让我觉得惊喜的地方，看完后觉得时间花的太不值了，除了没教人如何开机，基本上就是给从没用过计算机的人写的。</li>
 </ul>
 
 
-<h2>Install</h2>
+<h5>漫画</h5>
 
-<p>需要安装的有两个东西：一个是Maven本身，一个是IDE插件。</p>
-
-<ol>
-<li>从Apache的<a href="http://maven.apache.org">Maven官网</a>下载压缩包，并解压到指定目录.</li>
-<li>将Maven添加到系统路径中：export PATH=/path/to/maven/bin:$PATH 。如果使用bash，将该条语句添加到.bashrc中；zsh的添加到.zshrc中。搞定这步就可以在命令行使用Maven了。</li>
-<li>命令行虽然方便快捷，但使用Java进行开发的一般还是会用IDE进行开发。有些版本的Eclipse自带了maven插件，不好用，还是找个没有自带的自己装吧。m2e：http://m2eclipse.sonatype.org/sites/m2e，这个是必需的；m2e-extra：http://m2eclipse.sonatype.org/sites/m2e-extras，这个不是必需的。装完后，重启Eclipse，右键点击项目会发现多了Maven选项。</li>
-<li>Eclipse里还用进行一下设置，将maven的配置文件换成我们下的maven的配置文件。配置：Maven > installations > Add…。选到maven的目录添加进来就行了。</li>
-</ol>
+<ul>
+<li>《请叫我小纯洁1》：当时“多看阅读”的限免，邪恶的漫画，嘻嘻。</li>
+</ul>
 
 
-<h2>Usage</h2>
+<h5>小说</h5>
 
-<p>Maven也是遵循“约定由于配置”原则的，所以使用Maven管理项目时，有约定好的目录结构。说实话，有关java的东西的命令行我都不熟，这里只说说Maven常用的几个命令和Eclipse下的使用。Eclipse下使用Maven创建的Java项目目录结构：</p>
-
-<pre><code>/src/main/java        ＃项目主代码目录
-/src/test/java        ＃项目测试代码目录
-/target               ＃maven的输出目录
-pom.xml               ＃maven中最重要的文件，作用如build.xml之于Ant
-</code></pre>
-
-<p>一般我们还会创建一个/src/main/resources目录用于存放项目资源，这也是maven约定的资源存放目录。</p>
-
-<h3>Maven常用命令</h3>
-
-<ol>
-<li>mvn help:system  该命令会答应出系统的环境变量，有时会非常有用。</li>
-<li>mvn clean compile 该命令会清理输出目录/target并编译项目至/target/classes目录。</li>
-<li>mvn clean test 清理输出目录->处理主资源->编译主代码->处理测试资源->编译测试代码->测试。</li>
-<li>mvn clean package 打包命令，默认打包成jar包。打包后的包名为pom.xml文件定义的artifactId-version.jar。</li>
-<li>mvn clean install 安装命令，会将当前项目打包后安装到Maven的本地仓库中，使得可以在其他maven项目中使用该包。</li>
-</ol>
+<ul>
+<li>《小王子》：朋友答谢我们的生日蛋糕而送的书。经典的一句：“本质的东西，眼睛是看不见的。”</li>
+<li>《1988:我想和这个世界谈谈》：韩寒的，所谓的公路小说。</li>
+<li>《新妹魔王的契约者01》和《打工吧！魔王大人01》：日本轻小说。本人是个日漫迷，看过不少动漫，觉得近几年轻小说改编的动漫质量不错，如炮姐之类的，所以就找了两本看看。</li>
+</ul>
 
 
-<p>Maven的命令还有其他参数可选，根据项目需求查看文档选择所需参数。</p>
+<h5>杂文</h5>
 
-<h3>在Eclipse中使用Maven</h3>
+<ul>
+<li>《我所理解的生活》</li>
+<li>《青春》</li>
+</ul>
 
-<ol>
-<li>使用maven创建项目：
-<img src="/images/mvn-project-select.png"></li>
-<li>选择archetype来生成项目骨架：
-<img src="/images/mvn-artifact-select.png"></li>
-<li>填写几个关键信息：
-<img src="/images/mvn-project-info.png"></li>
-<li>点击finish，这样就创建了一个Maven项目。Eclipse已经集成了Maven的几个常用命令，只需使用右键菜单选择即可执行。</li>
-</ol>
 
+<h5>技术</h5>
+
+<p>这里列的都是看完的，还有几本技术和专业相关的书处于在看状态。</p>
+
+<ul>
+<li>《Redis入门指南》</li>
+<li>《Introduction to Tornado》</li>
+<li>《Javascript: The Good Parts》</li>
+</ul>
+
+
+<h5>软件工程思考与哲学</h5>
+
+<ul>
+<li>《黑客与画家》：再次阅读。</li>
+<li>《重来》和《Getting Real》 ：这两本都是37signal出品，引起软件产品人和软件工程师共鸣的书。</li>
+<li>《软件随想录》</li>
+<li>《The Art of Readable Code》：讲代码整洁的。程序员必读书。</li>
+<li>《禅与摩托车维修艺术》：技术人必读。站在技术与人文的十字路口上。这本书对我来说暂时不太好理解，阮一峰的读后感：http://www.ruanyifeng.com/blog/2011/12/zen_and_the_art_of_motorcycle_maintenance.html</li>
+<li>《游戏改变世界：游戏化如何让现实变得更美好》：绝对会让你改变对游戏的看法的书。另外，我觉得这本书也是产品经理必读的书。</li>
+<li>《打造Facebook：亲历Facebook爆发的5年》</li>
+</ul>
+
+
+<h5>心理</h5>
+
+<ul>
+<li>《THE ROAD LESS TRAVELLED》：经典心理学著作，是一本关于个人成长的书。在中国这个心理医疗并不发达的国家，这本书显得尤为重要。</li>
+<li>《拆掉思维里的墙》：看不懂上面那本的就看这本吧。</li>
+</ul>
+
+
+<h5>文化</h5>
+
+<ul>
+<li>《思维版图》：讲述东西方思维差异的历史、地域与文化根源，帮助人理解东西方的思维差异、文化冲突等问题。</li>
+<li>《野长城》：算是一本摄影集，一个摄影家对文化遗存的记录。</li>
+</ul>
+
+
+<h5>历史</h5>
+
+<ul>
+<li>《你一定爱读的极简欧洲史》：一个历史老师写的书，非常简洁。由于简洁，不少有趣的细节也就没了。</li>
+</ul>
+
+
+<h5>传记：</h5>
+
+<ul>
+<li>《App创富传奇》：App创富故事集，愧对“传奇”二字。</li>
+<li>《The Ph.D. Grind》：一个美国博士写的自传，讲述自己的博士生涯，给准备去美国读博士的人一个参考。</li>
+<li>《奇特的一生》：文献性小说，主角是柳比歇夫。</li>
+</ul>
+
+
+<h5>学习与生活思考</h5>
+
+<ul>
+<li>《别告诉我你会做笔记》：日本人写的关于如何做工作笔记的书。</li>
+<li>《4点起床》</li>
+<li>《把你的英语用起来》：英语学习方法。</li>
+</ul>
+
+
+<h3>关于运动</h3>
+
+<p>这学期，跑了不少内环，内环两圈挑战成功了。
+在公司吃了不少下午茶，稍稍有些肚腩，腹肌挑战失败。</p>
+
+<h3>关于其他</h3>
+
+<p>没想到什么其他的要写了。</p>
 </div>
 
 
@@ -190,12 +248,12 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
   
 
 
-<time datetime="2012-12-15T12:18:00+08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+<time datetime="2013-12-14T09:30:00+08:00" pubdate data-updated="true">Dec 14<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/maven/'>Maven</a>
+    <a class='category' href='/blog/categories/life/'>Life</a>
   
 </span>
 
@@ -215,10 +273,8 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/11/24/hello/" title="Previous Post: Hello">&laquo; Hello</a>
+        <a class="basic-alignment left" href="/blog/2013/12/12/after-peculiar-life/" title="Previous Post: 读《奇特的一生》">&laquo; 读《奇特的一生》</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/12/16/using-maven-pom-dot-xml/" title="Next Post: Using Maven(2): pom.xml">Using Maven(2): pom.xml &raquo;</a>
       
     </p>
   </footer>
@@ -331,8 +387,8 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://sezina.github.com/blog/2012/12/15/using-maven-basic/';
-        var disqus_url = 'http://sezina.github.com/blog/2012/12/15/using-maven-basic/';
+        var disqus_identifier = 'http://sezina.github.com/blog/2013/12/14/my-2013/';
+        var disqus_url = 'http://sezina.github.com/blog/2013/12/14/my-2013/';
         var disqus_script = 'embed.js';
       
     (function () {
