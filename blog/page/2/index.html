@@ -9,7 +9,9 @@
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="Pharicator是FB的代码审查工具，现在我所在的团队也使用它来进行代码质量的控制。其提供了一个differential(code review)命令行工具Arcanist(arc)。本文仅从本人的日常使用中总结出Arcanist比较常用的用法做个简单介绍。 环境说明 OS: OS X &hellip;">
+  <meta name="description" content="Step 1. Download Tomcat7 Binary Distributions from Tomcat homepage.
+Step 2. Move the downloaded directory to /usr/local: 1
+sudo mv ~/Downloads/Apache &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +80,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/31/installing-tomcat-on-mac-os-x/">Installing Tomcat on Mac(OS X)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-31T15:13:00+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/07/31/installing-tomcat-on-mac-os-x/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Step 1. Download Tomcat7 Binary Distributions from Tomcat homepage.
+Step 2. Move the downloaded directory to <code>/usr/local</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo mv ~/Downloads/Apache-tomcat-7.0.24 /usr/local
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Step 3. Create a symbolic link in <code>/Library</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ln -s /usr/local/Apache-tomcat-7.0.24 /Library/Tomcat
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Step 4. Change ownership of <code>/Library/Tomcat</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown -R &lt;user_name&gt; /Library/Tomcat
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Step 5. Make all scripts executable:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chmod +x /Library/Tomcat/bin/*.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Step 6. Use command <code>/Library/Tomcat/bin/startup.sh</code> to start tomcat, then brower <code>http://localhost:8080</code>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -631,6 +700,10 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/17/new-2014/">2014展望</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/14/my-2013/">我的2013</a>
       </li>
     
@@ -644,10 +717,6 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     
       <li class="post">
         <a href="/blog/2013/11/10/leetcode-remove-element/">LeetCode &#8212; Remove Element</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/05/leetcode-remove-duplicates-from-sorted-array/">LeetCode &#8212; Remove Duplicates from Sorted Array</a>
       </li>
     
   </ul>
@@ -689,7 +758,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
 <li class='category'><a href='/blog/categories/eclipse/'>Eclipse (2)</a></li>
 <li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
 <li class='category'><a href='/blog/categories/leetcode/'>LeetCode (6)</a></li>
-<li class='category'><a href='/blog/categories/life/'>Life (1)</a></li>
+<li class='category'><a href='/blog/categories/life/'>Life (2)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>
 <li class='category'><a href='/blog/categories/phabricator/'>Phabricator (1)</a></li>
