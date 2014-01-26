@@ -9,7 +9,8 @@
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="(梦想路飞) 送走了2013迎来2014，想了想，这一年要做的事真的挺多的，且大致说说，详细的计划就不说的，自己知道就行了。 关于时间 时间这东西就像是一个只能取不能存的银行账户一样，只会越来越少。所以跟之前说的那样，实践时间统计法，不断完善，好好使用我自己的时间，提高效率，做好规划。不然， &hellip;">
+  <meta name="description" content="OJ地址 英文原题： Given an array of integers, every element appears three times except for one. Find that single one. Note:
+Your algorithm should have a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,153 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/26/leetcode-single-number-2/">LeetCode &#8212; Single Number 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-26T08:49:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/01/26/leetcode-single-number-2/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://oj.leetcode.com/problems/single-number-ii/">OJ地址</a></p>
+
+<p>英文原题：</p>
+
+<pre><code>Given an array of integers, every element appears three times except for one. Find that single one.
+
+Note:
+Your algorithm should have a linear runtime complexity. 
+Could you implement it without using extra memory?
+</code></pre>
+
+<p>中文大意：</p>
+
+<pre><code>给定一个由整数组成的数组，除了一个数之外其他的元素都出现了三次。请找出这个单独的数。
+
+注意：
+你的算法的时间复杂度要是线性的。你是否能够不用额外的存储空间解决这个问题？
+</code></pre>
+
+<p>有了上一道 <a href="http://sezina.github.io/blog/2013/11/05/leetcode-single-number/">Single Number</a> 的练习，一看到这道题基本可以确定这道题也要用位运算来解答。</p>
+
+<p>直观的解法就是使用一个<code>count[32]</code>的数组保存各位出现<code>1</code>的次数然后进行<code>mod 3</code>操作。除了一个单独的数外，其他数都出现了三次，那么，我们将所有数写成二进制位表示后，对每一位在所有的数中出现<code>1</code>的次数进行统计，会发现每位出现<code>1</code>的次数要么是3的倍数，要么就是模3余1，对统计结果进行<code>mod 3</code>，结果得<code>0</code>或<code>1</code>，然后将这些<code>0</code>和<code>1</code>对应回相应位置就是结果了。</p>
+
+<p>如<code>1010</code>、<code>1100</code>、<code>1010</code>、<code>1010</code>四个数，统计结果是：第一位出现<code>1</code>的次数是0，第二位是3次，第三位是1次，第四位是4次，即<code>count[] = {0, 3, 1, 4}</code>，<code>mod 3</code>后得<code>count[] = {0, 0, 1, 1}</code>，所以结果是<code>1100</code>。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">singleNumber</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">count</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">((</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="n">count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="n">result</span> <span class="o">|=</span> <span class="p">((</span><span class="n">count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>另外一种解法是非常有技巧性的解法，运作原理类似于三进制加法，即遇三清零。位操作只能用二进制来做，所以这里就用二进制来模拟三进制加法。这里需要3条规则：</p>
+
+<ol>
+<li>ones用于记录前一解法中<code>mod 3</code>得1的数位；</li>
+<li>twos用于记录前一解法中<code>mod 3</code>得2的数位；</li>
+<li>当ones和twos相同的数位都为<code>1</code>时，说明该位上1出现了3次，清零。</li>
+</ol>
+
+
+<p>通过这三条规则计算后，最后的ones即是结果。
+最后的解法如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">singleNumber</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">ones</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">twos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">threes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">twos</span> <span class="o">|=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">ones</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">ones</span> <span class="o">^=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>            <span class="n">threes</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">ones</span> <span class="o">&amp;</span> <span class="n">twos</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">ones</span> <span class="o">&amp;=</span> <span class="n">threes</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">twos</span> <span class="o">&amp;=</span> <span class="n">threes</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ones</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1166,110 +1314,6 @@ Add the two numbers and return it as a linked list.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/31/leetcode-two-sum/">LeetCode &#8212; Two Sum</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-31T13:04:00+08:00" pubdate data-updated="true">Oct 31<span>st</span>, 2013</time>
-        
-         | <a href="/blog/2013/10/31/leetcode-two-sum/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨日惊闻LeetCode这东西，听说上面的OJ都是些面试题，又据说是去北美找工作的人都会上去刷刷题，于是带着作为技术人对硅谷无比向往的心情注册了个号开刷，准备在接下来的这一段上算法课时间里把它刷完（一个美好的愿景）。</p>
-
-<p>首先，上一道和所有OJ的第一道a＋b一样的题：</p>
-
-<pre><code>  Given an array of integers, find two numbers such
-that they add up to a specific target number.
-  The function twoSum should return indices of the
-two numbers such that they add up to the target,
-where index1 must be less than index2. Please note
-that your returned answers (both index1 and index2)
-are not zero-based.
-  You may assume that each input would have exactly
-one solution.
-
-**Input**: numbers={2, 7, 11, 15}, target=9
-**Output**: index1=1, index2=2
-</code></pre>
-
-<p>中文意思就是：</p>
-
-<pre><code>给定一个数列，找到两个数，它们相加刚好等于给定的target的值。
-函数twoSum 应该返回这两个数的下标indx1和index2，且要求index1 &lt; index2，注意，这里的下标不是从0开始的。
-
-**示例输入**：numbers={2, 7, 11, 15}, target=9
-**示例输出**：index1=1, index2=2
-</code></pre>
-
-<p>看完题意简单吧，就是a＋b的问题。我直接写了两个for循环对数组进行循环判断。下面是我的C++实现。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
-</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
-</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">result</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                    <span class="n">result</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>                    <span class="n">result</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>                    <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1285,6 +1329,10 @@ one solution.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/26/leetcode-single-number-2/">LeetCode &#8212; Single Number 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/17/new-2014/">2014展望</a>
       </li>
     
@@ -1298,10 +1346,6 @@ one solution.
     
       <li class="post">
         <a href="/blog/2013/12/08/the-road-less-travelled-extract/">The Road Less Travelled 摘录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/10/leetcode-remove-element/">LeetCode &#8212; Remove Element</a>
       </li>
     
   </ul>
@@ -1342,7 +1386,7 @@ one solution.
     <li class='category'><a href='/blog/categories/code-review/'>Code review (1)</a></li>
 <li class='category'><a href='/blog/categories/eclipse/'>Eclipse (2)</a></li>
 <li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
-<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (6)</a></li>
+<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (7)</a></li>
 <li class='category'><a href='/blog/categories/life/'>Life (2)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>
@@ -1364,7 +1408,7 @@ one solution.
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Sezina -
+  Copyright &copy; 2014 - Sezina -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

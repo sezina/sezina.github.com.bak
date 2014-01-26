@@ -4,7 +4,7 @@
   <title><![CDATA[Category: LeetCode | Sezina]]></title>
   <link href="http://sezina.github.com/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://sezina.github.com/"/>
-  <updated>2013-12-17T10:59:53+08:00</updated>
+  <updated>2014-01-26T09:43:04+08:00</updated>
   <id>http://sezina.github.com/</id>
   <author>
     <name><![CDATA[Sezina]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode --- Single Number 2]]></title>
+    <link href="http://sezina.github.com/blog/2014/01/26/leetcode-single-number-2/"/>
+    <updated>2014-01-26T08:49:00+08:00</updated>
+    <id>http://sezina.github.com/blog/2014/01/26/leetcode-single-number-2</id>
+    <content type="html"><![CDATA[<p><a href="http://oj.leetcode.com/problems/single-number-ii/">OJ地址</a></p>
+
+<p>英文原题：</p>
+
+<pre><code>Given an array of integers, every element appears three times except for one. Find that single one.
+
+Note:
+Your algorithm should have a linear runtime complexity. 
+Could you implement it without using extra memory?
+</code></pre>
+
+<p>中文大意：</p>
+
+<pre><code>给定一个由整数组成的数组，除了一个数之外其他的元素都出现了三次。请找出这个单独的数。
+
+注意：
+你的算法的时间复杂度要是线性的。你是否能够不用额外的存储空间解决这个问题？
+</code></pre>
+
+<p>有了上一道 <a href="http://sezina.github.io/blog/2013/11/05/leetcode-single-number/">Single Number</a> 的练习，一看到这道题基本可以确定这道题也要用位运算来解答。</p>
+
+<p>直观的解法就是使用一个<code>count[32]</code>的数组保存各位出现<code>1</code>的次数然后进行<code>mod 3</code>操作。除了一个单独的数外，其他数都出现了三次，那么，我们将所有数写成二进制位表示后，对每一位在所有的数中出现<code>1</code>的次数进行统计，会发现每位出现<code>1</code>的次数要么是3的倍数，要么就是模3余1，对统计结果进行<code>mod 3</code>，结果得<code>0</code>或<code>1</code>，然后将这些<code>0</code>和<code>1</code>对应回相应位置就是结果了。</p>
+
+<p>如<code>1010</code>、<code>1100</code>、<code>1010</code>、<code>1010</code>四个数，统计结果是：第一位出现<code>1</code>的次数是0，第二位是3次，第三位是1次，第四位是4次，即<code>count[] = {0, 3, 1, 4}</code>，<code>mod 3</code>后得<code>count[] = {0, 0, 1, 1}</code>，所以结果是<code>1100</code>。</p>
+
+<p>```cpp
+class Solution {
+public:</p>
+
+<pre><code>int singleNumber(int A[], int n) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    int count[32] = {0};
+    int result = 0;
+    for (int i = 0; i &lt; 32; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            if ((A[j] &gt;&gt; i) &amp; 1) {
+                count[i]++;
+            }
+        }
+        result |= ((count[i] % 3) &lt;&lt; i);
+    }
+    return result;
+}
+</code></pre>
+
+<p>};
+```</p>
+
+<p>另外一种解法是非常有技巧性的解法，运作原理类似于三进制加法，即遇三清零。位操作只能用二进制来做，所以这里就用二进制来模拟三进制加法。这里需要3条规则：</p>
+
+<ol>
+<li>ones用于记录前一解法中<code>mod 3</code>得1的数位；</li>
+<li>twos用于记录前一解法中<code>mod 3</code>得2的数位；</li>
+<li>当ones和twos相同的数位都为<code>1</code>时，说明该位上1出现了3次，清零。</li>
+</ol>
+
+
+<p>通过这三条规则计算后，最后的ones即是结果。
+最后的解法如下：</p>
+
+<p>```cpp
+class Solution {
+public:</p>
+
+<pre><code>int singleNumber(int A[], int n) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    int ones = 0, twos = 0, threes = 0;
+    for (int i = 0; i &lt; n; i++) {
+        twos |= A[i] &amp; ones;
+        ones ^= A[i];
+        threes = ~(ones &amp; twos);
+        ones &amp;= threes;
+        twos &amp;= threes;
+    }
+    return ones;
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LeetCode --- Remove Element]]></title>
@@ -212,100 +302,6 @@ public:</p>
     }
 
     return result;
-}
-</code></pre>
-
-<p>};
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LeetCode --- Add Two Numbers]]></title>
-    <link href="http://sezina.github.com/blog/2013/11/01/leetcode-add-two-numbers/"/>
-    <updated>2013-11-01T16:46:00+08:00</updated>
-    <id>http://sezina.github.com/blog/2013/11/01/leetcode-add-two-numbers</id>
-    <content type="html"><![CDATA[<p>又来了一道a＋b的题目。</p>
-
-<p>英文原题：</p>
-
-<pre><code>  You are given two linked lists representing two 
-non－negative numbers. The digits are stored in reverse
-order and each of their nodes contain a single digit.
-Add the two numbers and return it as a linked list.
-
-**Input**: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
-**Output**: 7 -&gt; 0 -&gt; 8
-</code></pre>
-
-<p>大意是：</p>
-
-<pre><code>给定两个用链表表示的非负数，这两个数为逆序存储（即个位-&gt;十位-&gt;百位这样存储），
-数字的每一位用一个节点表示，求和后将和以同样的方式组织并返回。
-</code></pre>
-
-<p>这道题是考察基本的指针链表，非常简单。</p>
-
-<p>```cpp
-/<em><em>
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode </em>next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- </em>/
-class Solution {
-public:</p>
-
-<pre><code>ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-    // IMPORTANT: Please reset any member data you declared, as
-    // the same Solution instance will be reused for each test case.
-    int carry = 0;
-    int temp_sum = 0;
-    ListNode *result_l = NULL, *last_one;
-    while (l1 != NULL &amp;&amp; l2 != NULL) {
-        temp_sum = l1-&gt;val + l2-&gt;val + carry;
-        if (temp_sum &gt; 9) {
-            carry = 1;
-            temp_sum -= 10;
-        } else {
-            carry = 0;
-        }
-        if (result_l == NULL) {
-            result_l = last_one = new ListNode(temp_sum);
-        } else {
-            last_one-&gt;next = new ListNode(temp_sum);
-            last_one = last_one-&gt;next;
-        }
-        l1 = l1-&gt;next;
-        l2 = l2-&gt;next;
-    }
-
-    ListNode *copy_l;
-    if (l1 != NULL) {
-        copy_l = l1;
-    } else {
-        copy_l = l2;
-    }
-
-    while (copy_l != NULL) {
-        temp_sum = copy_l-&gt;val + carry;;
-        if (temp_sum &gt; 9) {
-            carry = 1;
-            temp_sum -= 10;
-        } else {
-            carry = 0;
-        }
-        last_one-&gt;next = new ListNode(temp_sum);
-        last_one = last_one-&gt;next;
-        copy_l = copy_l-&gt;next;
-    }
-
-    if (carry) {
-        last_one-&gt;next = new ListNode(carry);
-    }
-    return result_l;
 }
 </code></pre>
 
