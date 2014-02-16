@@ -9,7 +9,8 @@
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="昨日惊闻LeetCode这东西，听说上面的OJ都是些面试题，又据说是去北美找工作的人都会上去刷刷题，于是带着作为技术人对硅谷无比向往的心情注册了个号开刷，准备在接下来的这一段上算法课时间里把它刷完（一个美好的愿景）。 首先，上一道和所有OJ的第一道a＋b一样的题： Given an array &hellip;">
+  <meta name="description" content="又来了一道a＋b的题目。 英文原题： You are given two linked lists representing two non－negative numbers. The digits are stored in reverse
+order and each of their &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,186 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/01/leetcode-add-two-numbers/">LeetCode &#8212; Add Two Numbers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-01T16:46:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/11/01/leetcode-add-two-numbers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>又来了一道a＋b的题目。</p>
+
+<p>英文原题：</p>
+
+<pre><code>  You are given two linked lists representing two 
+non－negative numbers. The digits are stored in reverse
+order and each of their nodes contain a single digit.
+Add the two numbers and return it as a linked list.
+
+**Input**: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+**Output**: 7 -&gt; 0 -&gt; 8
+</code></pre>
+
+<p>大意是：</p>
+
+<pre><code>给定两个用链表表示的非负数，这两个数为逆序存储（即个位-&gt;十位-&gt;百位这样存储），
+数字的每一位用一个节点表示，求和后将和以同样的方式组织并返回。
+</code></pre>
+
+<p>这道题是考察基本的指针链表，非常简单。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Definition for singly-linked list.</span>
+</span><span class='line'><span class="cm"> * struct ListNode {</span>
+</span><span class='line'><span class="cm"> *     int val;</span>
+</span><span class='line'><span class="cm"> *     ListNode *next;</span>
+</span><span class='line'><span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
+</span><span class='line'><span class="cm"> * };</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">ListNode</span> <span class="o">*</span><span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">temp_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">result_l</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">last_one</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span> <span class="p">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">temp_sum</span> <span class="o">=</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="n">carry</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">temp_sum</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">temp_sum</span> <span class="o">-=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">result_l</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">result_l</span> <span class="o">=</span> <span class="n">last_one</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">temp_sum</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">last_one</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">temp_sum</span><span class="p">);</span>
+</span><span class='line'>                <span class="n">last_one</span> <span class="o">=</span> <span class="n">last_one</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">copy_l</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">copy_l</span> <span class="o">=</span> <span class="n">l1</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">copy_l</span> <span class="o">=</span> <span class="n">l2</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">while</span> <span class="p">(</span><span class="n">copy_l</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">temp_sum</span> <span class="o">=</span> <span class="n">copy_l</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="n">carry</span><span class="p">;;</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">temp_sum</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">temp_sum</span> <span class="o">-=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="n">last_one</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">temp_sum</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">last_one</span> <span class="o">=</span> <span class="n">last_one</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">copy_l</span> <span class="o">=</span> <span class="n">copy_l</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">carry</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">last_one</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">carry</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result_l</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -802,6 +983,10 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/15/several-ways-to-traverse-a-binary-tree/">几种遍历二叉树的方法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/01/26/leetcode-single-number-2/">LeetCode &#8212; Single Number 2</a>
       </li>
     
@@ -815,10 +1000,6 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     
       <li class="post">
         <a href="/blog/2013/12/12/after-peculiar-life/">读《奇特的一生》</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/08/the-road-less-travelled-extract/">The Road Less Travelled 摘录</a>
       </li>
     
   </ul>
@@ -856,10 +1037,11 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
 <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/code-review/'>Code review (1)</a></li>
+    <li class='category'><a href='/blog/categories/algorithm/'>Algorithm (1)</a></li>
+<li class='category'><a href='/blog/categories/code-review/'>Code review (1)</a></li>
 <li class='category'><a href='/blog/categories/eclipse/'>Eclipse (2)</a></li>
 <li class='category'><a href='/blog/categories/java/'>Java (2)</a></li>
-<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (7)</a></li>
+<li class='category'><a href='/blog/categories/leetcode/'>LeetCode (8)</a></li>
 <li class='category'><a href='/blog/categories/life/'>Life (2)</a></li>
 <li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>

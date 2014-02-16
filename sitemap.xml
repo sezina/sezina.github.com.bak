@@ -69,16 +69,22 @@
         <lastmod>2014-01-26T09:42:29+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://sezina.github.com/blog/2014/02/15/several-ways-to-traverse-a-binary-tree/
+        </loc>
+        <lastmod>2014-02-16T09:52:07+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://sezina.github.com/about/</loc>
         <lastmod>2012-11-28T22:19:33+08:00</lastmod>
     </url>
     <url>
         <loc>http://sezina.github.com/blog/archives/</loc>
-        <lastmod>2014-01-26T09:42:29+08:00</lastmod>
+        <lastmod>2014-02-16T09:52:07+08:00</lastmod>
     </url>
     <url>
         <loc>http://sezina.github.com/</loc>
-        <lastmod>2014-01-26T09:42:29+08:00</lastmod>
+        <lastmod>2014-02-16T09:52:07+08:00</lastmod>
     </url>
     <url>
         <loc>http://sezina.github.com/resume/</loc>
