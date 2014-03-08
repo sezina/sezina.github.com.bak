@@ -9,8 +9,9 @@
   <meta name="author" content="Sezina">
 
   
-  <meta name="description" content="又来了一道a＋b的题目。 英文原题： You are given two linked lists representing two non－negative numbers. The digits are stored in reverse
-order and each of their &hellip;">
+  <meta name="description" content="原题： Reverse digits of an integer. Example1: x = 123, return 321
+Example2: x = -123, return -321 Have you thought about this?
+Here are some good &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +80,107 @@ order and each of their &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/05/leetcode-reverse-integer/">LeetCode &#8212; Reverse Integer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T09:11:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/11/05/leetcode-reverse-integer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>原题：</p>
+
+<pre><code>Reverse digits of an integer.
+
+Example1: x = 123, return 321
+Example2: x = -123, return -321
+
+
+Have you thought about this?
+Here are some good questions to ask before coding.
+Bonus points for you if you have already thought through this!
+
+If the integer's last digit is 0, what should the output be? ie, cases such as 10, 100.
+
+Did you notice that the reversed integer might overflow? Assume the input 
+is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?
+
+Throw an exception? Good, but what if throwing an exception is not an option? 
+You would then have to re-design the function (ie, add an extra parameter).
+</code></pre>
+
+<p>中文大意是：</p>
+
+<pre><code>反转给定的整数。
+
+如果考虑了以下问题有加分。
+当给定的整数末尾为0的情况。
+给定的整数在32位int范围内，但反转后会溢出的情况，如1000000003反转后就会溢出。
+
+抛出异常来处理？好，但如果抛出异常不是我们希望的做法呢？你将要重新设计函数。
+</code></pre>
+
+<p>说实在的我没搞懂这道题要考察什么，如果说是那两种意外情况，那只需声明一个long long类型的变量就搞定了。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="kt">long</span> <span class="kt">long</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">x</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -983,6 +1085,10 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/08/the-art-of-clean-up/">《整理的艺术》摘录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/15/several-ways-to-traverse-a-binary-tree/">几种遍历二叉树的方法</a>
       </li>
     
@@ -996,10 +1102,6 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
     
       <li class="post">
         <a href="/blog/2013/12/14/my-2013/">我的2013</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/12/after-peculiar-life/">读《奇特的一生》</a>
       </li>
     
   </ul>
@@ -1046,7 +1148,7 @@ pom.xml               ＃maven中最重要的文件，作用如build.xml之于An
 <li class='category'><a href='/blog/categories/maven/'>Maven (2)</a></li>
 <li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>
 <li class='category'><a href='/blog/categories/phabricator/'>Phabricator (1)</a></li>
-<li class='category'><a href='/blog/categories/reading/'>Reading (2)</a></li>
+<li class='category'><a href='/blog/categories/reading/'>Reading (3)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>Tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/python/'>python (1)</a></li>
 
